@@ -11,9 +11,11 @@ import { createZipPublisher } from './publisher/zip';
 import createIceJsProjectBuilder, { plugins as icejsPlugins } from './solutions/icejs';
 import createIceJs3ProjectBuilder, { plugins as icejs3Plugins } from './solutions/icejs3';
 import createRaxAppProjectBuilder, { plugins as raxPlugins } from './solutions/rax-app';
+import createReactFCProjectBuilder, { plugins as reactFCPlugins } from './solutions/react-fc';
 
 // 引入说明
 import { REACT_CHUNK_NAME } from './plugins/component/react/const';
+import { REACT_FC_CHUNK_NAME } from './plugins/component/react/fcConst';
 import { COMMON_CHUNK_NAME, CLASS_DEFINE_CHUNK_NAME, DEFAULT_LINK_AFTER } from './const/generator';
 
 // 引入通用插件组
@@ -44,11 +46,13 @@ export default {
     icejs: createIceJsProjectBuilder,
     icejs3: createIceJs3ProjectBuilder,
     rax: createRaxAppProjectBuilder,
+    'react-fc': createReactFCProjectBuilder,
   },
   solutionParts: {
     icejs,
     icejs3,
     rax,
+    'react-fc': icejs,
   },
   publishers: {
     disk: createDiskPublisher,
@@ -83,6 +87,9 @@ export default {
     rax: {
       ...raxPlugins,
     },
+    'react-fc': {
+      ...reactFCPlugins,
+    },
 
     /**
      * @deprecated please use icejs
@@ -99,6 +106,7 @@ export default {
     COMMON_CHUNK_NAME,
     CLASS_DEFINE_CHUNK_NAME,
     REACT_CHUNK_NAME,
+    REACT_FC_CHUNK_NAME,
   },
   defaultLinkAfter: {
     COMMON_DEFAULT_LINK_AFTER: DEFAULT_LINK_AFTER,
